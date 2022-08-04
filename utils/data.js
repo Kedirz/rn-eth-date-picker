@@ -32,23 +32,21 @@ export const monthLength = (geezYear, geezMonth) => {
 };
 
 export const makeBoard = (geezYear, geezMonth) => {
-  let board = [[]];
+  let board = [];
   const startDay = staringDay(geezYear, geezMonth);
   const lengthOfMonth = monthLength(geezYear, geezMonth);
   let i = 0, j = 0;
-  console.log(startDay, lengthOfMonth)
   while (i < startDay) {
-    board[0].push({id: '', title: ''});
+    board.push({id: `${geezYear}${geezMonth}${i}empty`, title: ''});
     i++;
   }
   i = 1;
   while (i < lengthOfMonth + 1) {
-    board[j].push({id: `${geezYear}${geezMonth}${i}`, title: i});
+    board.push({id: `${geezYear}${geezMonth}${i}`, title: i});
     i++;
-    if (board[j].length === 7 && i < lengthOfMonth + 1) {
-      board.push([]);
-      j++;
-    }
+  }
+  while (board.length % 7 !== 0) {
+    board.push('')
   }
   return board;
 };

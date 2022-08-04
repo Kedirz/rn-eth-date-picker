@@ -21,19 +21,28 @@ export default function App() {
       </View>
 
       <View style={styles.dateHeader}>
-      <Image
+        <Image
           style={{flex: 0.1, height: 15 }}
           source={require('./assets/previous.png')}
         />
-        <Text style={{flex: 1, alignItems: 'center' }}> {headerMonth + ' ' + headerYear} </Text>
+
+
+        <View style={{flex: 1, fontWeight: 'bold', alignItems: 'center'}}>
+          <Text >
+            { headerMonth + ' ' + headerYear }
+          </Text>
+        </View>
+
         <Image
           style={{flex: 0.1, height: 15 }}
           source={require('./assets/next.png')}
         />
       </View>
+
+
       <View style={styles.board}>
         <Days />
-        <Board year={2014} month={8} />
+        <Board year={2014} month={9} />
       </View>
     </View>
   );
@@ -57,12 +66,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 0.3,
     flexDirection: 'row',
-    backgroundColor: 'red',
     padding: 15
   },
   board: {
     flex: 2.2,
-    padding: 15,
+    padding: 10,
 
     // backgroundColor: 'gray'
   },

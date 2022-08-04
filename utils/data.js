@@ -7,10 +7,11 @@ export const getTodayGeez = () => {
   return [ ge(year, month, date), geezDays[now.weekday] ];
 };
 
-export const staringDay = (year, month) => {
-  const adjacentGreg = eg(year, month, 1);
-  const day = DateTime.fromObject(adjacentGreg);
-  return day.weekday;
+export const staringDay = (geezYear, geezMonth) => {
+  // convert to greg with day 1, then find associated day
+  const { year, month, day } = eg(geezYear, geezMonth, 1);
+  const gregDay = new Date(`${year}-${month}-${day}`);
+  return gregDay.getDay();
 };
 
 export const monthLength = (year, month) => {

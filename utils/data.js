@@ -31,6 +31,28 @@ export const monthLength = (geezYear, geezMonth) => {
   return length;
 };
 
+export const makeBoard = (geezYear, geezMonth) => {
+  let board = [[]];
+  const startDay = staringDay(geezYear, geezMonth);
+  const lengthOfMonth = monthLength(geezYear, geezMonth);
+  let i = 0, j = 0;
+  console.log(startDay, lengthOfMonth)
+  while (i < startDay) {
+    board[0].push('');
+    i++;
+  }
+  i = 1;
+  while (i < lengthOfMonth + 1) {
+    board[j].push(i);
+    i++;
+    if (board[j].length === 7 && i < lengthOfMonth + 1) {
+      board.push([]);
+      j++;
+    }
+  }
+  console.table(board);
+};
+
 export const geezMonths = [
   "መስከረም", "ጥቅምት", "ኅዳር", "ታኅሣሥ", "ጥር", "የካቲት", "መጋቢት",
    "ሚያዝያ", "ግንቦት", "ሰኔ", "ሐምሌ", "ነሐሴ", "ጳጉሜን"

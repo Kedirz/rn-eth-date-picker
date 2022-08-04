@@ -1,19 +1,33 @@
 import { staringDay, monthLength } from '../utils/data';
 
-export function Board (month, year) {
+export default function Board (year, month) {
   // find starting
-  const startDay = staringDay(year, month);
-  const monthLength = monthLength(year, month);
+  const startDay = staringDay(year, 12);
+  const lengthOfMonth = monthLength(year, month);
+  console.log('hello :', lengthOfMonth, startDay);
   let i = 0;
   let j = startDay;
   let curDay = 1;
-  while (curDay < monthLength + 1) {
-
-    if (j + 1 > 6) {
-      i++, j = 0;
+  let board = [[]];
+  const daysInMonth = (lengthOfMonth) => {
+    let counter = 0;
+    while (curDay < lengthOfMonth + 1) {
+      if (counter < j) {
+        board[i].push('');
+      } else {
+        board[i].push(`${curDay}`);
+      }
+      curDay++;
+      if (j + 1 > 6) {
+        i++;
+        if (curDay < lengthOfMonth + 1) {
+          board.push([]);
+        }
+      }
+      j++;
     }
-    curDay++;
-  }
+  };
+  console.log(board[0])
 };
 
 // i = 0;

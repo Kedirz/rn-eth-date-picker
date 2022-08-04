@@ -3,6 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { getTodayGeez, geezMonths, geezDays } from './utils/data';
 import Days from './components/Days';
+import Board from './components/Board';
 
 export default function App() {
   let curHeader = getTodayGeez();

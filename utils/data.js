@@ -15,6 +15,7 @@ export const staringDay = (year, month) => {
 
 export const monthLength = (year, month) => {
   let length = 30;
+  console.log(year, month, 'year month')
   if (month === 12) {
     const adjacentGreg = eg(year, month, 1);
     if (isGregorianLeap(adjacentGreg.year)) {
@@ -22,8 +23,8 @@ export const monthLength = (year, month) => {
     } else {
       length = 5;
     }
-    return length
   }
+  return length
 };
 
 export const geezMonths = [

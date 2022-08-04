@@ -1,7 +1,7 @@
 import { staringDay, monthLength } from '../utils/data';
 
 export default function Board (year, month) {
-  // find starting
+  // find starting of the month and length: PAGUME purposes
   const startDay = staringDay(year, 12);
   const lengthOfMonth = monthLength(year, month);
   console.log('hello :', lengthOfMonth, startDay);

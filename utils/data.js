@@ -14,18 +14,21 @@ export const staringDay = (geezYear, geezMonth) => {
   return gregDay.getDay();
 };
 
-export const monthLength = (year, month) => {
+export const monthLength = (geezYear, geezMonth) => {
   let length = 30;
-  console.log(year, month, 'year month')
-  if (month === 12) {
-    const adjacentGreg = eg(year, month, 1);
-    if (isGregorianLeap(adjacentGreg.year)) {
+  // Incase the month is PAGUME
+  if (geezMonth === 13) {
+    // convert to greg, add 6, convert to ethipian
+    const greg = eg(geezYear, geezMonth, 1);
+    greg.day = greg.day + 5;
+    const eth = ge(greg.year, greg.month, greg.day).day;
+    if (eth === 6) {
       length = 6;
-    } else {
+    } else if (eth === 1) {
       length = 5;
     }
   }
-  return length
+  return length;
 };
 
 export const geezMonths = [

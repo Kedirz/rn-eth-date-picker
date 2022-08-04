@@ -16,8 +16,8 @@ export default function App() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text> { headerYear } </Text>
-        <Text> { headerDay + ', ' + headerMonth + ' ' + headerDate} </Text>
+        <Text style={{color: 'silver', paddingBottom: 5}}> { headerYear } </Text>
+        <Text style={{fontSize: 22, color: 'white'}}> { headerDay + ', ' + headerMonth + ' ' + headerDate} </Text>
       </View>
 
       <View style={styles.dateHeader}>
@@ -28,7 +28,7 @@ export default function App() {
 
 
         <View style={{flex: 1, fontWeight: 'bold', alignItems: 'center'}}>
-          <Text >
+          <Text style={{fontSize: 19}}>
             { headerMonth + ' ' + headerYear }
           </Text>
         </View>
@@ -57,8 +57,10 @@ const styles = StyleSheet.create({
     padding: 30,
   },
   header: {
-    flex: 0.5,
-    backgroundColor: 'rgb(0, 93, 179)',
+    flex: 0.4,
+    backgroundColor: 'rgb(31, 105, 190)',
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
     padding: 15,
   },
   dateHeader: {

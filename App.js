@@ -33,6 +33,7 @@ export default function App() {
       </View>
       <View style={styles.board}>
         <Days />
+        <Board year={2014} month={8} />
       </View>
     </View>
   );

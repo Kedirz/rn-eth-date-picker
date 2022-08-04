@@ -2,9 +2,9 @@ import { ge, eg } from 'ethiopic-calendar';
 import { DateTime } from "luxon";
 
 export const getTodayGeez = () => {
-  const now = DateTime.now();
-  const [year, month, date] = [now.year, now.month, now.day];
-  return [ ge(year, month, date), geezDays[now.weekday] ];
+  const now = new Date();
+  const [year, month, date] = [now.getFullYear(), now.getMonth(), now.getDate()];
+  return [ ge(year, month + 1, date), geezDays[now.getDay()] ];
 };
 
 export const staringDay = (geezYear, geezMonth) => {
@@ -38,19 +38,19 @@ export const makeBoard = (geezYear, geezMonth) => {
   let i = 0, j = 0;
   console.log(startDay, lengthOfMonth)
   while (i < startDay) {
-    board[0].push('');
+    board[0].push({id: '', title: ''});
     i++;
   }
   i = 1;
   while (i < lengthOfMonth + 1) {
-    board[j].push(i);
+    board[j].push({id: `${geezYear}${geezMonth}${i}`, title: i});
     i++;
     if (board[j].length === 7 && i < lengthOfMonth + 1) {
       board.push([]);
       j++;
     }
   }
-  console.table(board);
+  return board;
 };
 
 export const geezMonths = [

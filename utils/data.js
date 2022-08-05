@@ -6,6 +6,12 @@ export const getTodayGeez = () => {
   return [ ge(year, month + 1, date), geezDays[now.getDay()] ];
 };
 
+export const getDayFromGeez = ({ geezYear, geezMonth, geezDate }) => {
+  const { year, month, day } = eg(geezYear, geezMonth, geezDate);
+  const gregDay = new Date(year, month - 1, day);
+  return geezDays[gregDay.getDay()]
+};
+
 export const staringDay = (geezYear, geezMonth) => {
   // convert to greg with day 1, then find associated day
   const { year, month, day } = eg(geezYear, geezMonth, 1);
@@ -42,7 +48,7 @@ export const makeBoard = (geezYear, geezMonth) => {
   }
   i = 1;
   while (i < lengthOfMonth + 1) {
-    board.push({id: `${geezYear}${geezMonth}${i}`, title: i});
+    board.push({id: `${geezYear}-${geezMonth}-${i}`, title: i});
     i++;
   }
   while (board.length % 7 !== 0) {

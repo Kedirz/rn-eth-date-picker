@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { StatusBar } from 'expo-status-bar';
+// import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, TouchableHighlight, Button } from 'react-native';
-import { getTodayGeez, geezMonths, geezDays, makeBoard } from './utils/data';
+import { getTodayGeez, geezMonths, geezDays, makeBoard, getDayFromGeez } from './utils/data';
 import Days from './components/Days';
 import Board from './components/Board';
 
@@ -20,10 +20,6 @@ export default function App() {
     dateGeez: today[0].day, // actual qen
     dayGeez: today[1], // day in the week like seno, or makseno
   });
-  const [headerMonth, setHeaderMonth] = useState(geezMonths[today[0].month - 1]);
-  const [headerDate, setHeaderDate] = useState(today[0].day);
-  const [headerDay, setHeaderDay] = useState(today[1]);
-  const [headerYear, setHeaderYear] = useState(today[0].year);
 
   function previousMonth() {
     const m = dateOnBoard.month, y = dateOnBoard.year;
@@ -63,11 +59,27 @@ export default function App() {
     }
   };
 
+  function handleDayPress(pressedDate) {
+    pressedDate = pressedDate.split('-');
+    const dateObj = {
+      geezYear: Number(pressedDate[0]),
+      geezMonth: Number(pressedDate[1]),
+      geezDate: Number(pressedDate[2]),
+    }
+    const geezDay = getDayFromGeez(dateObj);
+    setDateOnHeader({
+      yearGeez: dateObj.geezYear,
+      monthGeez: geezMonths[dateObj.geezMonth - 1],
+      dateGeez: dateObj.geezDate,
+      dayGeez: geezDay
+    });
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={{color: 'silver', paddingBottom: 5}}> { headerYear } </Text>
-        <Text style={{fontSize: 22, color: 'white'}}> { headerDay + ', ' + headerMonth + ' ' + headerDate} </Text>
+        <Text style={{color: 'silver', paddingBottom: 5}}> { dateOnHeader.yearGeez } </Text>
+        <Text style={{fontSize: 22, color: 'white'}}> { dateOnHeader.dayGeez + ', ' + dateOnHeader.monthGeez + ' ' + dateOnHeader.dateGeez} </Text>
       </View>
 
       <View style={styles.dateHeader}>
@@ -100,7 +112,7 @@ export default function App() {
 
       <View style={styles.board}>
         <Days />
-        <Board table={dateOnBoard.table} />
+        <Board table={dateOnBoard.table} handleDayPress={handleDayPress} today={`${today[0].year}-${today[0].month}-${today[0].day}`} />
       </View>
     </View>
   );
@@ -112,7 +124,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: '#fff',
     justifyContent: 'center',
-    padding: 30,
+    paddingTop: 50,
+    padding: 25
   },
   header: {
     flex: 0.4,

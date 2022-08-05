@@ -1,16 +1,42 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image } from 'react-native';
-import { getTodayGeez, geezMonths, geezDays } from './utils/data';
+import { StyleSheet, Text, View, Image, TouchableHighlight, Button } from 'react-native';
+import { getTodayGeez, geezMonths, geezDays, makeBoard } from './utils/data';
 import Days from './components/Days';
 import Board from './components/Board';
 
 export default function App() {
   let curHeader = getTodayGeez();
+  const [dateOnBoard, setDateOnBoard] = useState({
+      month: curHeader[0].month,
+      year: curHeader[0].year,
+      table: makeBoard(curHeader[0].year, curHeader[0].month)
+    });
+  // const [table, setTable] = useState(makeBoard(curHeader[0].year, curHeader[0].month));
   const [headerMonth, setHeaderMonth] = useState(geezMonths[curHeader[0].month - 1]);
   const [headerDate, setHeaderDate] = useState(curHeader[0].day);
   const [headerDay, setHeaderDay] = useState(curHeader[1]);
-  const [headerYear, setHeaderYear] = useState(curHeader[0].year)
+  const [headerYear, setHeaderYear] = useState(curHeader[0].year);
+
+  function previousMonth() {
+
+  };
+  function nextMonth() {
+    const m = dateOnBoard.month, y = dateOnBoard.year
+    if (dateOnBoard.month === 13) {
+      setDateOnBoard({
+        month: 1,
+        year: y + 1,
+        table: makeBoard(y + 1, 1)
+      });
+    } else {
+      setDateOnBoard({
+        month: m + 1,
+        year: y,
+        table: makeBoard(y, m + 1)
+      })
+    }
+  };
 
 
   return (
@@ -21,11 +47,14 @@ export default function App() {
       </View>
 
       <View style={styles.dateHeader}>
-        <Image
+        {/* <Image
           style={{flex: 0.1, height: 15 }}
           source={require('./assets/previous.png')}
+        /> */}
+        <Button
+          title="prev"
+          onPress={() => previousMonth()}
         />
-
 
         <View style={{flex: 1, fontWeight: 'bold', alignItems: 'center'}}>
           <Text style={{fontSize: 19}}>
@@ -33,16 +62,21 @@ export default function App() {
           </Text>
         </View>
 
-        <Image
+        <Button
+          title="next"
+          onPress={() => nextMonth()}
+        />
+
+        {/* <Image
           style={{flex: 0.1, height: 15 }}
           source={require('./assets/next.png')}
-        />
+        /> */}
       </View>
 
 
       <View style={styles.board}>
         <Days />
-        <Board year={2014} month={9} />
+        <Board table={dateOnBoard.table} />
       </View>
     </View>
   );

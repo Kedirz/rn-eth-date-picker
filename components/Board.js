@@ -6,8 +6,7 @@ const Item = ({ title }) => (
     <Text >{ title }</Text>
   </View>
 );
-export default function Board({year, month}) {
-  const table = makeBoard(year, month);
+export default function Board({table}) {
   const renderItem = ({ item }) => (
     <Item title={ item.title } />
   );

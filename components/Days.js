@@ -7,7 +7,7 @@ const Item = ({ title }) => (
     <Text style={{color: 'grey'}}>{ title }</Text>
   </View>
 );
-export default function Days({}) {
+export default function Days() {
   const renderItem = ({ item }) => (
     <Item title={ item.title } />
   );

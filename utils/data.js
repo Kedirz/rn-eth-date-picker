@@ -10,7 +10,7 @@ export const getTodayGeez = () => {
 export const staringDay = (geezYear, geezMonth) => {
   // convert to greg with day 1, then find associated day
   const { year, month, day } = eg(geezYear, geezMonth, 1);
-  const gregDay = new Date(`${year}-${month}-${day}`);
+  const gregDay = new Date(year, month - 1, day);
   return gregDay.getDay();
 };
 
@@ -34,6 +34,7 @@ export const monthLength = (geezYear, geezMonth) => {
 export const makeBoard = (geezYear, geezMonth) => {
   let board = [];
   const startDay = staringDay(geezYear, geezMonth);
+  console.log('Year: ', geezYear, 'month: ', geezMonth, geezDays[startDay])
   const lengthOfMonth = monthLength(geezYear, geezMonth);
   let i = 0, j = 0;
   while (i < startDay) {
@@ -66,21 +67,23 @@ export const geezDaysShort = [
   { id: 'satShortAm', title: "ቅ" },
 ]
 
-// en: [
-//   "Mäskäräm", "Ṭəqəmt", "Ḫədar", "Taḫśaś", "Ṭərr", "Yäkatit",
-//   "Mägabit", "Miyazya", "Gənbo", "Säne", "Ḥamle", "Nähase", "Ṗagume"
-// ],
-// am: [
-//   "መስከረም", "ጥቅምት", "ኅዳር", "ታኅሣሥ", "ጥር", "የካቲት", "መጋቢት",
-//   "ሚያዝያ", "ግንቦት", "ሰኔ", "ሐምሌ", "ነሐሴ", "ጳጉሜን"
-// ]
+/*
+  en: [
+    "Mäskäräm", "Ṭəqəmt", "Ḫədar", "Taḫśaś", "Ṭərr", "Yäkatit",
+    "Mägabit", "Miyazya", "Gənbo", "Säne", "Ḥamle", "Nähase", "Ṗagume"
+  ],
+  am: [
+    "መስከረም", "ጥቅምት", "ኅዳር", "ታኅሣሥ", "ጥር", "የካቲት", "መጋቢት",
+    "ሚያዝያ", "ግንቦት", "ሰኔ", "ሐምሌ", "ነሐሴ", "ጳጉሜን"
+  ]
 
 
 
-// en: [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' ],
+  en: [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' ],
 
 
 
 
-// en: [ 'S', 'M', 'T', 'W', 'T', 'F', 'S' ],
-// am: [ "እ", "ሰ", "ማ", "ረ", "ሐ", "ዓ", "ቅ" ]
+  en: [ 'S', 'M', 'T', 'W', 'T', 'F', 'S' ],
+  am: [ "እ", "ሰ", "ማ", "ረ", "ሐ", "ዓ", "ቅ" ]
+*/

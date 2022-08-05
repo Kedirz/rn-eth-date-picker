@@ -6,33 +6,43 @@ import Days from './components/Days';
 import Board from './components/Board';
 
 export default function App() {
-  let curHeader = getTodayGeez();
+  let today = getTodayGeez();
   const [dateOnBoard, setDateOnBoard] = useState({
-      month: curHeader[0].month,
-      year: curHeader[0].year,
-      table: makeBoard(curHeader[0].year, curHeader[0].month)
-    });
-  // const [table, setTable] = useState(makeBoard(curHeader[0].year, curHeader[0].month));
-  const [headerMonth, setHeaderMonth] = useState(geezMonths[curHeader[0].month - 1]);
-  const [headerDate, setHeaderDate] = useState(curHeader[0].day);
-  const [headerDay, setHeaderDay] = useState(curHeader[1]);
-  const [headerYear, setHeaderYear] = useState(curHeader[0].year);
+    month: today[0].month,
+    monthGeez: geezMonths[today[0].month - 1],
+    year: today[0].year,
+    table: makeBoard(today[0].year, today[0].month)
+  });
+
+  const [dateOnHeader, setDateOnHeader] = useState({
+    monthGeez: geezMonths[today[0].month - 1],
+    yearGeez: today[0].year,
+    dateGeez: today[0].day, // actual qen
+    dayGeez: today[1], // day in the week like seno, or makseno
+  });
+  const [headerMonth, setHeaderMonth] = useState(geezMonths[today[0].month - 1]);
+  const [headerDate, setHeaderDate] = useState(today[0].day);
+  const [headerDay, setHeaderDay] = useState(today[1]);
+  const [headerYear, setHeaderYear] = useState(today[0].year);
 
   function previousMonth() {
 
   };
+
   function nextMonth() {
-    const m = dateOnBoard.month, y = dateOnBoard.year
+    const m = dateOnBoard.month, y = dateOnBoard.year;
     if (dateOnBoard.month === 13) {
       setDateOnBoard({
         month: 1,
         year: y + 1,
-        table: makeBoard(y + 1, 1)
+        monthGeez: geezMonths[0],
+        table: makeBoard(y + 1, 1),
       });
     } else {
       setDateOnBoard({
         month: m + 1,
         year: y,
+        monthGeez: geezMonths[m],
         table: makeBoard(y, m + 1)
       })
     }
@@ -58,7 +68,7 @@ export default function App() {
 
         <View style={{flex: 1, fontWeight: 'bold', alignItems: 'center'}}>
           <Text style={{fontSize: 19}}>
-            { headerMonth + ' ' + headerYear }
+            { dateOnBoard.monthGeez + ' ' + dateOnBoard.year }
           </Text>
         </View>
 

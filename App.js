@@ -76,7 +76,7 @@ export default function App() {
           source={require('./assets/previous.png')}
         /> */}
         <Button
-          title="prev"
+          title="<"
           onPress={() => previousMonth()}
         />
 
@@ -87,7 +87,7 @@ export default function App() {
         </View>
 
         <Button
-          title="next"
+          title=">"
           onPress={() => nextMonth()}
         />
 

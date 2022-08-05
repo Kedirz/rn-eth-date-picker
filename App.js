@@ -26,7 +26,22 @@ export default function App() {
   const [headerYear, setHeaderYear] = useState(today[0].year);
 
   function previousMonth() {
-
+    const m = dateOnBoard.month, y = dateOnBoard.year;
+    if (dateOnBoard.month === 1) {
+      setDateOnBoard({
+        month: 13,
+        year: y - 1,
+        monthGeez: geezMonths[12],
+        table: makeBoard(y - 1, 13)
+      });
+    } else {
+      setDateOnBoard({
+        month: m - 1,
+        year: y,
+        monthGeez: geezMonths[m - 2],
+        table: makeBoard(y, m - 1)
+      })
+    }
   };
 
   function nextMonth() {
@@ -47,7 +62,6 @@ export default function App() {
       })
     }
   };
-
 
   return (
     <View style={styles.container}>

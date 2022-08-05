@@ -1,5 +1,4 @@
 import { ge, eg } from 'ethiopic-calendar';
-import { DateTime } from "luxon";
 
 export const getTodayGeez = () => {
   const now = new Date();

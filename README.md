@@ -9,6 +9,6 @@
 #### Use it in your app  
     <Eth />  
   
-  
-
-
+  ### Description  
+This component is ethiopian calendar, months and years in amharic. It associates a date to its day in the week i.e. seno, makseno.., month and year.  
+![expected](https://user-images.githubusercontent.com/70090831/183263451-8528943e-2ea4-4f3d-90a8-6a30f7f663f7.gif)

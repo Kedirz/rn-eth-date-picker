@@ -39,7 +39,6 @@ export const monthLength = (geezYear, geezMonth) => {
 export const makeBoard = (geezYear, geezMonth) => {
   let board = [];
   const startDay = staringDay(geezYear, geezMonth);
-  console.log('Year: ', geezYear, 'month: ', geezMonth, geezDays[startDay])
   const lengthOfMonth = monthLength(geezYear, geezMonth);
   let i = 0, j = 0;
   while (i < startDay) {

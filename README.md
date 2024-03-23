@@ -12,3 +12,5 @@
   ### Description  
 This component is ethiopian calendar, months and years in amharic. It associates a date to its day in the week i.e. seno, makseno.., month and year.  
 ![expected2](https://user-images.githubusercontent.com/70090831/183263559-b2ebb4cc-5bc1-49fd-b2ef-8e5664c7b3d1.gif)
+
+ሰላም: Feel free to contribute, or raise issues. I will be happy to address any.
